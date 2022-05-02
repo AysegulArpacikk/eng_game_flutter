@@ -1,0 +1,79 @@
+{
+  "pairWords": [
+    {
+      "id": 1,
+      "code": "en",
+      "name": "Chair",
+      "correctAnswer": "Sandalye",
+      "imageUrl": "assets/images/chair.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Sandalye"
+        },
+        {
+          "id": 2,
+          "name": "Masa"
+        },
+        {
+          "id": 3,
+          "name": "Koltuk"
+        },
+        {
+          "id": 4,
+          "name": "Kapı"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "code": "en",
+      "name": "Book",
+      "correctAnswer": "Kitap",
+      "imageUrl": "assets/images/book.png",
+      "answers": [
+        {
+          "id": 5,
+          "name": "Silgi"
+        },
+        {
+          "id": 6,
+          "name": "Kitap"
+        },
+        {
+          "id": 7,
+          "name": "Kalem"
+        },
+        {
+          "id": 8,
+          "name": "Defter"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "code": "en",
+      "name": "Carpet",
+      "correctAnswer": "Halı",
+      "imageUrl": "assets/images/carpet.png",
+      "answers": [
+        {
+          "id": 9,
+          "name": "Koltuk"
+        },
+        {
+          "id": 10,
+          "name": "Bardak"
+        },
+        {
+          "id": 11,
+          "name": "Halı"
+        },
+        {
+          "id": 12,
+          "name": "Dolap"
+        }
+      ]
+    }
+  ]
+}
