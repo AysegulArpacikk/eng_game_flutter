@@ -67,48 +67,56 @@ class _PairWordsPageState extends State<PairWordsPage> {
   Widget _deneme(PairingWordPageFetchState state, PairingWordPageBloc bloc) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+          title: const Text("Kelimeleri Eşle"),
+        centerTitle: true,
+        backgroundColor: Colors.green[200],
+      ),
       body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          //height: MediaQuery.of(context).size.height * 0.8,
-          // decoration: BoxDecoration(
-          //   borderRadius: const BorderRadius.all(Radius.circular(15)),
-          //   border: Border.all(width: 1, color: Colors.grey),
-          //   color: Colors.white,
-          // ),
-          child: state.wordList.length != index ? Column(
-            children: [
-              progressBar(state),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.width * 0.15,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(width: 1, color: Colors.white),
-                  color: Colors.teal[200],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            //height: MediaQuery.of(context).size.height * 0.8,
+            // decoration: BoxDecoration(
+            //   borderRadius: const BorderRadius.all(Radius.circular(15)),
+            //   border: Border.all(width: 1, color: Colors.grey),
+            //   color: Colors.white,
+            // ),
+            child: state.wordList.length != index ? Column(
+              children: [
+                progressBar(state),
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.width * 0.15,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(width: 1, color: Colors.white),
+                    color: Colors.teal[200],
+                  ),
+                  child: Center(child: Text(state.wordList[index]["name"])),
                 ),
-                child: Center(child: Text(state.wordList[index]["name"])),
-              ),
-              Container(
-                height: 250,
-                width: 200,
-                margin: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(width: 1, color: Colors.grey),
-                  color: Colors.white,
+                Container(
+                  height: 250,
+                  width: 200,
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(width: 1, color: Colors.grey),
+                    color: Colors.white,
+                  ),
+                  child: Image.asset(
+                    state.wordList[index]["imageUrl"],
+                    height: 20,
+                    width: 20,
+                  ),
                 ),
-                child: Image.asset(
-                  state.wordList[index]["imageUrl"],
-                  height: 20,
-                  width: 20,
-                ),
-              ),
-              _answerList(state.wordList[index]["answers"], state.wordList[index]["correctAnswer"], bloc),
-              isCorrect ? _continueButton() : const Text("")
-            ],
-          ) : winnerCupAndMessage(state)
+                _answerList(state.wordList[index]["answers"], state.wordList[index]["correctAnswer"], bloc),
+                isCorrect ? _continueButton() : const Text("")
+              ],
+            ) : winnerCupAndMessage(state)
+          ),
         ),
       ),
     );
@@ -155,7 +163,15 @@ class _PairWordsPageState extends State<PairWordsPage> {
             height: 400,
           ),
         ),
-        const Text("Tebrikler kazandın!")
+        Text(
+            "Tebrikler kazandın!",
+          style: TextStyle(
+            fontSize: 22,
+            color: Colors.green[300],
+            fontFamily: "Hind",
+            fontWeight: FontWeight.bold
+          ),
+        )
       ],
     );
   }

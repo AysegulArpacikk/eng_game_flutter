@@ -3,75 +3,75 @@
     {
       "id": 1,
       "code": "en",
-      "name": "Chair",
-      "correctAnswer": "Sandalye",
+      "name": "Sandalye",
+      "correctAnswer": "Chair",
       "imageUrl": "assets/images/chair.png",
       "answers": [
         {
           "id": 1,
-          "name": "Sandalye"
+          "name": "Chair"
         },
         {
           "id": 2,
-          "name": "Masa"
+          "name": "Desk"
         },
         {
           "id": 3,
-          "name": "Koltuk"
+          "name": "Table"
         },
         {
           "id": 4,
-          "name": "Kapı"
+          "name": "Sofa"
         }
       ]
     },
     {
       "id": 2,
       "code": "en",
-      "name": "Book",
-      "correctAnswer": "Kitap",
+      "name": "Kitap",
+      "correctAnswer": "Book",
       "imageUrl": "assets/images/book.png",
       "answers": [
         {
           "id": 5,
-          "name": "Silgi"
+          "name": "Rubber"
         },
         {
           "id": 6,
-          "name": "Kitap"
+          "name": "Book"
         },
         {
           "id": 7,
-          "name": "Kalem"
+          "name": "Pencil"
         },
         {
           "id": 8,
-          "name": "Defter"
+          "name": "Watch"
         }
       ]
     },
     {
       "id": 3,
       "code": "en",
-      "name": "Carpet",
-      "correctAnswer": "Halı",
+      "name": "Halı",
+      "correctAnswer": "Carpet",
       "imageUrl": "assets/images/carpet.png",
       "answers": [
         {
           "id": 9,
-          "name": "Koltuk"
+          "name": "Sofa"
         },
         {
           "id": 10,
-          "name": "Bardak"
+          "name": "Glass"
         },
         {
           "id": 11,
-          "name": "Halı"
+          "name": "Carpet"
         },
         {
           "id": 12,
-          "name": "Dolap"
+          "name": "Cabinet"
         }
       ]
     }
