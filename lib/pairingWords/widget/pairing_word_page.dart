@@ -1,18 +1,18 @@
-import 'dart:math';
-
+import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:eng_game_flutter/common/SessionStorageService.dart';
 import 'package:eng_game_flutter/pairingWords/bloc/pairing_word_page_bloc.dart';
 import 'package:eng_game_flutter/pairingWords/bloc/pairing_word_page_event.dart';
 import 'package:eng_game_flutter/pairingWords/bloc/pairing_word_page_state.dart';
-import 'package:eng_game_flutter/pairingWords/widget/alert_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import 'confetti.dart';
+
 class PairWordsPage extends StatefulWidget {
-  PairWordsPage({Key? key}) : super(key: key);
+  const PairWordsPage({Key? key}) : super(key: key);
 
   @override
   _PairWordsPageState createState() => new _PairWordsPageState();
@@ -23,7 +23,13 @@ class _PairWordsPageState extends State<PairWordsPage> {
   late PairingWordPageBloc pairingWordPageBloc;
   SessionStorageService? sessionStorageService;
   bool isCorrect = false;
+  bool isFalse = false;
   int index = 0;
+
+  final AudioCache _audioCache = AudioCache(
+    prefix: 'assets/',
+    fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
+  );
 
   @override
   void initState() {
@@ -46,25 +52,14 @@ class _PairWordsPageState extends State<PairWordsPage> {
           if(state is PairingWordPageInitialState || state is PairingWordPageLoadingState) {
             return const Center(child: CircularProgressIndicator(strokeWidth: 5));
           } else if (state is PairingWordPageFetchState) {
-            return BlocListener<PairingWordPageBloc, PairingWordPageState>(
-              listener: (context, state) {
-                if(state is CorrectAnswersState) {
-                  AlertDialogModal(message: state.message);
-                } if(state is FailedAnswersState) {
-                  AlertDialogModal(message: state.message);
-                }
-              },
-                child: Scaffold(
-                   body: _deneme(state, pairingWordPageBloc)
-                ),
-            );
+            return Scaffold(body: SafeArea(child: _body(state, pairingWordPageBloc)));
           } else {
             return const Text("Sayfa bulunamadı!");
           }
         }) ;
   }
 
-  Widget _deneme(PairingWordPageFetchState state, PairingWordPageBloc bloc) {
+  Widget _body(PairingWordPageFetchState state, PairingWordPageBloc bloc) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -72,50 +67,53 @@ class _PairWordsPageState extends State<PairWordsPage> {
         centerTitle: true,
         backgroundColor: Colors.green[200],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            //height: MediaQuery.of(context).size.height * 0.8,
-            // decoration: BoxDecoration(
-            //   borderRadius: const BorderRadius.all(Radius.circular(15)),
-            //   border: Border.all(width: 1, color: Colors.grey),
-            //   color: Colors.white,
-            // ),
-            child: state.wordList.length != index ? Column(
-              children: [
-                progressBar(state),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.width * 0.15,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    border: Border.all(width: 1, color: Colors.white),
-                    color: Colors.teal[200],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              //height: MediaQuery.of(context).size.height * 0.8,
+              // decoration: BoxDecoration(
+              //   borderRadius: const BorderRadius.all(Radius.circular(15)),
+              //   border: Border.all(width: 1, color: Colors.grey),
+              //   color: Colors.white,
+              // ),
+              child: state.wordList.length != index ? Column(
+                children: [
+                  progressBar(state),
+                  Container(
+                    margin: const EdgeInsets.only(top: 20),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      border: Border.all(width: 1, color: Colors.white),
+                      color: Colors.teal[200],
+                    ),
+                    child: Center(child: Text(state.wordList[index]["name"])),
                   ),
-                  child: Center(child: Text(state.wordList[index]["name"])),
-                ),
-                Container(
-                  height: 250,
-                  width: 200,
-                  margin: const EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    border: Border.all(width: 1, color: Colors.grey),
-                    color: Colors.white,
+                  Container(
+                    height: 250,
+                    width: 200,
+                    margin: const EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      border: Border.all(width: 1, color: Colors.grey),
+                      color: Colors.white,
+                    ),
+                    child: Image.asset(
+                      state.wordList[index]["imageUrl"],
+                      height: 20,
+                      width: 20,
+                    ),
                   ),
-                  child: Image.asset(
-                    state.wordList[index]["imageUrl"],
-                    height: 20,
-                    width: 20,
-                  ),
-                ),
-                _answerList(state.wordList[index]["answers"], state.wordList[index]["correctAnswer"], bloc),
-                isCorrect ? _continueButton() : const Text("")
-              ],
-            ) : winnerCupAndMessage(state)
+                  _answerList(state.wordList[index]["answers"], state.wordList[index]["correctAnswer"], bloc, state),
+                  isCorrect ? _continueButton() : const Text("")
+                ],
+              ) : winnerCupAndMessage(state)
+            ),
           ),
         ),
       ),
@@ -163,28 +161,31 @@ class _PairWordsPageState extends State<PairWordsPage> {
             height: 400,
           ),
         ),
-        Text(
-            "Tebrikler kazandın!",
-          style: TextStyle(
-            fontSize: 22,
-            color: Colors.green[300],
-            fontFamily: "Hind",
-            fontWeight: FontWeight.bold
+        Padding(
+          padding: const EdgeInsets.only(bottom: 50),
+          child: Text(
+              "Tebrikler kazandın!",
+            style: TextStyle(
+              fontSize: 22,
+              color: Colors.green[300],
+              fontFamily: "Hind",
+              fontWeight: FontWeight.bold
+            ),
           ),
         )
       ],
     );
   }
 
-  Widget _answerList(List<dynamic> answerList, String mainWord, PairingWordPageBloc bloc) {
+  Widget _answerList(List<dynamic> answerList, String mainWord, PairingWordPageBloc bloc, PairingWordPageFetchState state) {
     List<Widget> list = [];
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 24) / 7;
     final double itemWidth = size.width / 2;
 
     for (var element in answerList) {
-      var menu = _elements(element!, mainWord, bloc);
-      list.add(menu);
+      var options = _elements(element!, mainWord, bloc, state);
+      list.add(options);
     }
 
     return GridView.count(
@@ -198,22 +199,56 @@ class _PairWordsPageState extends State<PairWordsPage> {
     );
   }
 
-  Widget _elements(dynamic element, String mainWord, PairingWordPageBloc bloc) {
+  Widget _elements(dynamic element, String mainWord, PairingWordPageBloc bloc, PairingWordPageFetchState state) {
     return Stack(
       children: <Widget>[
-        confetti(),
+        Confetti(controllerCenter: _controllerCenter),
         GestureDetector(
           onTap: () async {
+            setState(() {
+              element["isSelected"] = true;
+            });
             context.read<PairingWordPageBloc>().add(
                 IsPairingWordCorrectEvent(answerWord: element["name"], mainWord: mainWord));
             bool response = await bloc.isCorrectAnswer(element["name"], mainWord);
             if(response) {
+              _audioCache.play("sounds/success.mp3");
               _controllerCenter.play();
               setState(() {
                 isCorrect = true;
               });
             } else {
-              const AlertDialogModal(message: "Yanlış cevap!");
+              showDialog(context: context,
+                  builder: (_) => AlertDialog(
+                    title: const Text("Yanlış cevap!"),
+                    backgroundColor: Colors.red[100],
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                    content: Row(children: [
+                      const Text("Doğru cevap: "),
+                      Text(
+                        mainWord,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green
+                        ),
+                      )
+                    ]),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              index++;
+                              isCorrect = false;
+                              _controllerCenter.stop();
+                            });
+                            Navigator.of(context, rootNavigator: true).pop('dialog');
+                          },
+                          child: const Text("Sonraki Soru")
+                      )
+                    ],
+                  ),
+                  barrierDismissible: false);
             }
           },
           child: Container(
@@ -222,7 +257,7 @@ class _PairWordsPageState extends State<PairWordsPage> {
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(15)),
                 border: Border.all(width: 1, color: Colors.white),
-                color: isCorrect && (element["name"] == mainWord) ?
+                color: (isCorrect && (element["name"] == mainWord)) ?
                         Colors.green :
                         Colors.green[100],
               ),
@@ -251,50 +286,6 @@ class _PairWordsPageState extends State<PairWordsPage> {
           },
         ),
       ],
-    );
-  }
-
-  Path drawStar(Size size) {
-    double degToRad(double deg) => deg * (pi / 180.0);
-
-    const numberOfPoints = 5;
-    final halfWidth = size.width / 2;
-    final externalRadius = halfWidth;
-    final internalRadius = halfWidth / 2.5;
-    final degreesPerStep = degToRad(360 / numberOfPoints);
-    final halfDegreesPerStep = degreesPerStep / 2;
-    final path = Path();
-    final fullAngle = degToRad(360);
-    path.moveTo(size.width, halfWidth);
-
-    for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path.lineTo(halfWidth + externalRadius * cos(step),
-          halfWidth + externalRadius * sin(step));
-      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
-    }
-    path.close();
-    return path;
-  }
-
-  Widget confetti() {
-    return Align(
-      alignment: Alignment.center,
-      child: ConfettiWidget(
-        confettiController: _controllerCenter,
-        blastDirectionality: BlastDirectionality
-            .explosive, // don't specify a direction, blast randomly
-        shouldLoop:
-        true, // start again as soon as the animation is finished
-        colors: const [
-          Colors.green,
-          Colors.blue,
-          Colors.pink,
-          Colors.orange,
-          Colors.purple
-        ], // manually specify the colors to be used
-        createParticlePath: drawStar, // define a custom shape/path.
-      ),
     );
   }
 }

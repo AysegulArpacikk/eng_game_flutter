@@ -9,19 +9,23 @@
       "answers": [
         {
           "id": 1,
-          "name": "Chair"
+          "name": "Chair",
+          "isSelected": false
         },
         {
           "id": 2,
-          "name": "Desk"
+          "name": "Desk",
+          "isSelected": false
         },
         {
           "id": 3,
-          "name": "Table"
+          "name": "Table",
+          "isSelected": false
         },
         {
           "id": 4,
-          "name": "Sofa"
+          "name": "Sofa",
+          "isSelected": false
         }
       ]
     },
@@ -33,20 +37,24 @@
       "imageUrl": "assets/images/book.png",
       "answers": [
         {
-          "id": 5,
-          "name": "Rubber"
+          "id": 1,
+          "name": "Rubber",
+          "isSelected": false
         },
         {
-          "id": 6,
-          "name": "Book"
+          "id": 2,
+          "name": "Book",
+          "isSelected": false
         },
         {
-          "id": 7,
-          "name": "Pencil"
+          "id": 3,
+          "name": "Pencil",
+          "isSelected": false
         },
         {
-          "id": 8,
-          "name": "Watch"
+          "id": 4,
+          "name": "Watch",
+          "isSelected": false
         }
       ]
     },
@@ -58,20 +66,24 @@
       "imageUrl": "assets/images/carpet.png",
       "answers": [
         {
-          "id": 9,
-          "name": "Sofa"
+          "id": 1,
+          "name": "Sofa",
+          "isSelected": false
         },
         {
-          "id": 10,
-          "name": "Glass"
+          "id": 2,
+          "name": "Glass",
+          "isSelected": false
         },
         {
-          "id": 11,
-          "name": "Carpet"
+          "id": 3,
+          "name": "Carpet",
+          "isSelected": false
         },
         {
-          "id": 12,
-          "name": "Cabinet"
+          "id": 4,
+          "name": "Cabinet",
+          "isSelected": false
         }
       ]
     }

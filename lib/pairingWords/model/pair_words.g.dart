@@ -12,6 +12,7 @@ EngQuestionWord _$EngQuestionWordFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String? ?? "",
       name: json['name'] as String? ?? "",
       correctAnswer: json['correctAnswer'] as String? ?? "",
+      imageUrl: json['imageUrl'] as String? ?? "",
       answers: (json['answers'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -24,5 +25,6 @@ Map<String, dynamic> _$EngQuestionWordToJson(EngQuestionWord instance) =>
       'code': instance.code,
       'name': instance.name,
       'correctAnswer': instance.correctAnswer,
+      'imageUrl': instance.imageUrl,
       'answers': instance.answers,
     };

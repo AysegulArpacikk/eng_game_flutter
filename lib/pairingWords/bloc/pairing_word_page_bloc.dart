@@ -21,7 +21,7 @@ class PairingWordPageBloc extends Bloc<PairingWordPageEvent, PairingWordPageStat
         yield PairingWordPageLoadingState();
       }
 
-      yield PairingWordPageFetchState(wordList: data["pairWords"]);
+      yield PairingWordPageFetchState(wordList: event.pairingWordList);
     } else if (event is IsPairingWordCorrectEvent) {
       if(event.answerWord == event.mainWord) {
         yield CorrectAnswersState(message: "Tebrikler!!");

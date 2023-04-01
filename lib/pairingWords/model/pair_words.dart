@@ -9,14 +9,15 @@ class EngQuestionWord extends Equatable{
   final String code;
   final String name;
   final String correctAnswer;
+  final String imageUrl;
   final List<String> answers;
 
-  EngQuestionWord({this.id = 1, this.code = "", this.name = "", this.correctAnswer = "", this.answers = const []});
+  EngQuestionWord({this.id = 1, this.code = "", this.name = "", this.correctAnswer = "", this.imageUrl = "", this.answers = const []});
 
   factory EngQuestionWord.fromJson(Map<String, dynamic> json) => _$EngQuestionWordFromJson(json);
 
   Map<String, dynamic> toJson() => _$EngQuestionWordToJson(this);
 
   @override
-  List<Object?> get props => [id, code, name, correctAnswer, answers];
+  List<Object?> get props => [id, code, name, correctAnswer, imageUrl, answers];
 }

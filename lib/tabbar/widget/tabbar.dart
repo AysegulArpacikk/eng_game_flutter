@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:eng_game_flutter/pairingWords/widget/pairing_word_page.dart';
+import 'package:eng_game_flutter/login/widget/login_or_register_page.dart';
 import 'package:flutter/cupertino.dart';
 
 class TabNavigationBar extends StatelessWidget {
@@ -31,7 +31,7 @@ class TabNavigationBar extends StatelessWidget {
       switch (index) {
         case 0:
           return CupertinoTabView(
-              builder: (context) => PairWordsPage());
+              builder: (context) => const LoginOrRegisterPage());
         case 1:
         default:
           return CupertinoTabView(

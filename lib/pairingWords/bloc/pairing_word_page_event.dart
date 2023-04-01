@@ -6,7 +6,11 @@ abstract class PairingWordPageEvent extends Equatable {
 }
 
 
-class PairingWordPageInitializeEvent extends PairingWordPageEvent {}
+class PairingWordPageInitializeEvent extends PairingWordPageEvent {
+  List<dynamic> pairingWordList;
+
+  PairingWordPageInitializeEvent({this.pairingWordList = const []});
+}
 
 class IsPairingWordCorrectEvent extends PairingWordPageEvent {
   final String answerWord;
