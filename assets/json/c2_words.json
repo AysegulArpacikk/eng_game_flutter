@@ -1,0 +1,94 @@
+{
+  "pairWords": [
+    {
+      "id": 1,
+      "category": "C2",
+      "code": "en",
+      "name": "Kapı",
+      "correctAnswer": "Door",
+      "imageUrl": "assets/images/chair.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Chair",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "Desk",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "Door",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "Sofa",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "C2",
+      "code": "en",
+      "name": "Kitap",
+      "correctAnswer": "Book",
+      "imageUrl": "assets/images/book.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Rubber",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "Book",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "Pencil",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "Watch",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "C2",
+      "code": "en",
+      "name": "Halı",
+      "correctAnswer": "Carpet",
+      "imageUrl": "assets/images/carpet.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Sofa",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "Glass",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "Carpet",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "Cabinet",
+          "isSelected": false
+        }
+      ]
+    }
+  ]
+}

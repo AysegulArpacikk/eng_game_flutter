@@ -1,3 +1,5 @@
+import 'package:eng_game_flutter/category/bloc/a1/a1_bloc.dart';
+import 'package:eng_game_flutter/category/bloc/a1/a1_event.dart';
 import 'package:eng_game_flutter/category/bloc/category_bloc.dart';
 import 'package:eng_game_flutter/category/bloc/category_state.dart';
 import 'package:eng_game_flutter/common/navigations.dart';
@@ -25,17 +27,17 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   void initState() {
-    super.initState();
     _pairingWordPageBloc = BlocProvider.of<PairingWordPageBloc>(context);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryPageBloc, CategoryPageState>(
         builder: (context, state) {
-          if(state is CategoriesFetchedState) {
+          if (state is CategoriesFetchedState) {
             return Material(child: Container(
-                child: _body(state)));
+                   child: _body(state)));
           } else {
             return const Text("Sayfa bulunamadı");
           }
@@ -91,8 +93,20 @@ class _CategoryPageState extends State<CategoryPage> {
     double selectedWidthInActive = width * 0.40;
     double selectedHeightInActive = height * 0.40;
     return GestureDetector(
-        onTap: (){
-          Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["questions"])).createRoute());
+        onTap: () {
+          if (category["name"] == "A1") {
+            Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["pairWords"], 0)).createRoute());
+          } else if (category["name"] == "A2") {
+            Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["pairWords"], 1)).createRoute());
+          } else if (category["name"] == "B1") {
+            Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["pairWords"], 2)).createRoute());
+          } else if(category["name"] == "B2") {
+            Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["pairWords"], 3)).createRoute());
+          } else if(category["name"] == "C1") {
+            Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["pairWords"], 4)).createRoute());
+          } else {
+            Navigator.of(context).push(CustomRouting(page: pairingWordPage(_pairingWordPageBloc, category["pairWords"], 5)).createRoute());
+          }
         },
         child: Container(
           width: selected ? selectedWidthActive : selectedWidthInActive,

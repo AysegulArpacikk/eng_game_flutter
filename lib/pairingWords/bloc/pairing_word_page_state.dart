@@ -9,8 +9,9 @@ class PairingWordPageInitialState extends PairingWordPageState {}
 
 class PairingWordPageFetchState extends PairingWordPageState {
   final List<dynamic> wordList;
+  final int index;
 
-  PairingWordPageFetchState({this.wordList = const []});
+  PairingWordPageFetchState({this.wordList = const [], this.index = 0});
 }
 
 class PairingWordPageLoadingState extends PairingWordPageState {}

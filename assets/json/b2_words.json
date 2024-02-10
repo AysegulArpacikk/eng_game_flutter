@@ -1,0 +1,94 @@
+{
+  "pairWords": [
+    {
+      "id": 1,
+      "category": "B2",
+      "code": "en",
+      "name": "Yatak",
+      "correctAnswer": "Bed",
+      "imageUrl": "assets/images/chair.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Bed",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "Desk",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "Table",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "Sofa",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "B2",
+      "code": "en",
+      "name": "El",
+      "correctAnswer": "Hand",
+      "imageUrl": "assets/images/book.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Rubber",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "Hand",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "Pencil",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "Watch",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "B2",
+      "code": "en",
+      "name": "Timsah",
+      "correctAnswer": "Crocodile",
+      "imageUrl": "assets/images/carpet.png",
+      "answers": [
+        {
+          "id": 1,
+          "name": "Sofa",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "Glass",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "Crocodile",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "Cabinet",
+          "isSelected": false
+        }
+      ]
+    }
+  ]
+}

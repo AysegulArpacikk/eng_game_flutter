@@ -1,8 +1,9 @@
 {
     "category": [
         {
+            "id": 1,
             "name": "A1",
-            "questions": [
+            "pairWords": [
                 {
                     "id": 1,
                     "code": "en",
@@ -93,8 +94,9 @@
             ]
         },
         {
+            "id": 2,
             "name": "A2",
-            "questions": [
+            "pairWords": [
                 {
                     "id": 1,
                     "code": "en",
@@ -185,8 +187,9 @@
             ]
         },
         {
+            "id": 3,
             "name": "B1",
-            "questions": [
+            "pairWords": [
                 {
                     "id": 1,
                     "code": "en",
@@ -277,18 +280,19 @@
             ]
         },
         {
+            "id": 4,
             "name": "B2",
-            "questions": [
+            "pairWords": [
                 {
                     "id": 1,
                     "code": "en",
-                    "name": "Sandalye",
-                    "correctAnswer": "Chair",
+                    "name": "Yatak",
+                    "correctAnswer": "Bed",
                     "imageUrl": "assets/images/chair.png",
                     "answers": [
                         {
                             "id": 1,
-                            "name": "Chair",
+                            "name": "Bed",
                             "isSelected": false
                         },
                         {
@@ -311,8 +315,8 @@
                 {
                     "id": 2,
                     "code": "en",
-                    "name": "Kitap",
-                    "correctAnswer": "Book",
+                    "name": "El",
+                    "correctAnswer": "Hand",
                     "imageUrl": "assets/images/book.png",
                     "answers": [
                         {
@@ -322,7 +326,7 @@
                         },
                         {
                             "id": 2,
-                            "name": "Book",
+                            "name": "Hand",
                             "isSelected": false
                         },
                         {
@@ -340,8 +344,8 @@
                 {
                     "id": 3,
                     "code": "en",
-                    "name": "Halı",
-                    "correctAnswer": "Carpet",
+                    "name": "Timsah",
+                    "correctAnswer": "Crocodile",
                     "imageUrl": "assets/images/carpet.png",
                     "answers": [
                         {
@@ -356,7 +360,7 @@
                         },
                         {
                             "id": 3,
-                            "name": "Carpet",
+                            "name": "Crocodile",
                             "isSelected": false
                         },
                         {
@@ -369,13 +373,14 @@
             ]
         },
         {
+            "id": 5,
             "name": "C1",
-            "questions": [
+            "pairWords": [
                 {
                     "id": 1,
                     "code": "en",
-                    "name": "Sandalye",
-                    "correctAnswer": "Chair",
+                    "name": "Bozdolabı",
+                    "correctAnswer": "Frige",
                     "imageUrl": "assets/images/chair.png",
                     "answers": [
                         {
@@ -385,7 +390,7 @@
                         },
                         {
                             "id": 2,
-                            "name": "Desk",
+                            "name": "Frige",
                             "isSelected": false
                         },
                         {
@@ -403,13 +408,13 @@
                 {
                     "id": 2,
                     "code": "en",
-                    "name": "Kitap",
-                    "correctAnswer": "Book",
+                    "name": "Okyanus",
+                    "correctAnswer": "Ocean",
                     "imageUrl": "assets/images/book.png",
                     "answers": [
                         {
                             "id": 1,
-                            "name": "Rubber",
+                            "name": "Ocean",
                             "isSelected": false
                         },
                         {
@@ -461,13 +466,14 @@
             ]
         },
         {
+            "id": 6,
             "name": "C2",
-            "questions": [
+            "pairWords": [
                 {
                     "id": 1,
                     "code": "en",
-                    "name": "Sandalye",
-                    "correctAnswer": "Chair",
+                    "name": "Kapı",
+                    "correctAnswer": "Door",
                     "imageUrl": "assets/images/chair.png",
                     "answers": [
                         {
@@ -482,7 +488,7 @@
                         },
                         {
                             "id": 3,
-                            "name": "Table",
+                            "name": "Door",
                             "isSelected": false
                         },
                         {

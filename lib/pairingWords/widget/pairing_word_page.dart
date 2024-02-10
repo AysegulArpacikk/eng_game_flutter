@@ -200,6 +200,7 @@ class _PairWordsPageState extends State<PairWordsPage> {
   }
 
   Widget _elements(dynamic element, String mainWord, PairingWordPageBloc bloc, PairingWordPageFetchState state) {
+    int index = 0;
     return Stack(
       children: <Widget>[
         Confetti(controllerCenter: _controllerCenter),
@@ -207,9 +208,10 @@ class _PairWordsPageState extends State<PairWordsPage> {
           onTap: () async {
             setState(() {
               element["isSelected"] = true;
+              index = state.index;
             });
             context.read<PairingWordPageBloc>().add(
-                IsPairingWordCorrectEvent(answerWord: element["name"], mainWord: mainWord));
+                IsPairingWordCorrectEvent(answerWord: element["name"], mainWord: mainWord, index: index));
             bool response = await bloc.isCorrectAnswer(element["name"], mainWord);
             if(response) {
               _audioCache.play("sounds/success.mp3");
@@ -235,17 +237,7 @@ class _PairWordsPageState extends State<PairWordsPage> {
                       )
                     ]),
                     actions: [
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              index++;
-                              isCorrect = false;
-                              _controllerCenter.stop();
-                            });
-                            Navigator.of(context, rootNavigator: true).pop('dialog');
-                          },
-                          child: const Text("Sonraki Soru")
-                      )
+                      _continueWhenWrongAnswer()
                     ],
                   ),
                   barrierDismissible: false);
@@ -262,6 +254,25 @@ class _PairWordsPageState extends State<PairWordsPage> {
                         Colors.green[100],
               ),
           ),
+        )
+      ],
+    );
+  }
+
+  Widget _continueWhenWrongAnswer() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        TextButton(
+            onPressed: () {
+              setState(() {
+                index++;
+                isCorrect = false;
+                _controllerCenter.stop();
+              });
+              Navigator.of(context, rootNavigator: true).pop('dialog');
+            },
+            child: const Text("Sonraki Soru")
         )
       ],
     );
