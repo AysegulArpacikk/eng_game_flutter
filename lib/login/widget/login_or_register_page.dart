@@ -86,13 +86,14 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
               alignment: Alignment.bottomLeft,
               child: Container(
                 margin: const EdgeInsets.only(left: 50, right:50),
-                child: const TextField(
-                  maxLength: 20,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Kullanıcı adı girin',
-                  ),
-                ),
+                child: _userNameAndPassword()
+                // const TextField(
+                //   maxLength: 20,
+                //   decoration: InputDecoration(
+                //     border: OutlineInputBorder(),
+                //     hintText: 'Kullanıcı adı girin',
+                //   ),
+                // ),
               ),
             ),
             ElevatedButton(
@@ -116,6 +117,32 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
                         borderRadius: BorderRadius.circular(50)))
             ),
           ]));
+  }
+
+  Widget _userNameAndPassword() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Kullanıcı adı',
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Şifre',
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _orText() {
